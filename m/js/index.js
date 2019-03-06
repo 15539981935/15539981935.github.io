@@ -1,4 +1,13 @@
 window.onload = function() {
+
+    var Sw = document.querySelector('html').clientWidth;
+    var Sh = document.querySelector('html').clientHeight;
+    var Th = document.querySelector('.title').clientHeight;
+    var Bh = document.querySelector('#clearCanvas').clientHeight;
+    document.querySelector('#canvas').style.width = Sw + "px";
+    document.querySelector('#canvas').style.height = Sh - Bh - Th + "px";
+
+    console.log(document.querySelector('#canvas').offsetTop)
     new lineCanvas({
         el: document.querySelector('#canvas'),
         clearEl: document.querySelector('#clearCanvas'),
@@ -43,12 +52,12 @@ function lineCanvas(obj) {
     // 开始绘制
     this.canvas.addEventListener('touchstart', function(e) {
         this.cxt.beginPath();
-        this.cxt.moveTo(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+        this.cxt.moveTo(e.changedTouches[0].pageX, (e.changedTouches[0].pageY - document.querySelector('#canvas').offsetTop));
     }.bind(this), false);
 
     // 绘制中
     this.canvas.addEventListener('touchmove', function(e) {
-        this.cxt.lineTo(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+        this.cxt.lineTo(e.changedTouches[0].pageX, (e.changedTouches[0].pageY - document.querySelector('#canvas').offsetTop));
         this.cxt.stroke();
     }.bind(this), false);
 
