@@ -12,7 +12,7 @@ window.onload = function() {
 function lineCanvas(obj) {
     this.lineWidth = 5;
     this.color = '#111';
-    this.background = '#fdd';
+    this.background = 'transparent';
     for (var i in obj) {
         this[i] = obj[i];
     };
@@ -68,8 +68,8 @@ function lineCanvas(obj) {
         var imgPng = this.canvas.toDataURL('image/png');
         var imgJpg = this.canvas.toDataURL('image/jpeg', 0.8);
         var alink = document.createElement("a");
-        alink.href = imgJpg;
-        alink.download = "canvas"
+        alink.href = imgPng;
+        alink.download = "canvas";
         alink.click();
     }.bind(this), false);
 }
