@@ -11,13 +11,11 @@ window.onload = function() {
 
 function lineCanvas(obj) {
     this.lineWidth = 5;
-    this.color = '#555';
-    this.background = '#fff';
+    this.color = '#111';
+    this.background = '#fdd';
     for (var i in obj) {
         this[i] = obj[i];
     };
-
-    debugger
 
     this.canvas = document.createElement('canvas');
     if (!(this.canvas.getContext && this.canvas.getContext('2d'))) {
@@ -31,8 +29,6 @@ function lineCanvas(obj) {
     this.canvas.height = this.el.clientHeight;
     this.el.prepend(this.canvas);
 
-    debugger
-
     this.cxt = this.canvas.getContext('2d');
     this.cxt.fillStyle = this.background;
     this.cxt.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -43,10 +39,6 @@ function lineCanvas(obj) {
     // 利用阴影，消除锯齿
     this.cxt.shadowBlur = 1;
     this.cxt.shadowColor = '#000';
-
-
-
-    debugger
 
     // 开始绘制
     this.canvas.addEventListener('touchstart', function(e) {
@@ -70,9 +62,6 @@ function lineCanvas(obj) {
         this.cxt.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }.bind(this), false);
 
-
-
-    debugger
     // 保存图片
     this.saveEl.addEventListener('click', function() {
         var imgBase64 = this.canvas.toDataURL();
