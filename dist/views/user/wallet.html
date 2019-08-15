@@ -1,14 +1,152 @@
 <div class="layui-fluid">
   <div class="layui-row">
+    <div class="layui-col-xs12" style="text-align: center">
+      <button class="layui-btn ">筛选</button>
+      <div class="layui-input-inline">
+        <input type="tel" name="searContent" autocomplete="off" placeholder="手机号/昵称/邮箱/ID" class="layui-input">
+      </div>
+      <button class="layui-btn" id="searchEmailCompany" data-type="reload">
+        <i class="layui-icon" style="font-size: 20px; "></i> 搜索
+      </button>
+    </div>
+
     <div class="layui-col-xs12">
-      会员钱包
+      <table class="layui-hide" id="test" lay-filter="test"></table>
+
+      <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+          <button class="layui-btn layui-btn-sm" lay-event="getCheckData">删除选中行</button>
+          <!-- <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+            <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button> -->
+        </div>
+      </script>
+
+      <script type="text/html" id="barDemo">
+        <!-- <a class="layui-btn layui-btn-xs" lay-event="detail">查看</a> -->
+
+      <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+      <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+      </script>
+
     </div>
   </div>
 </div>
 
 <script>
-  layui.use(['layer'], function () {
-    var layer = layui.layer;
+  layui.config({
+    base: '/src/js/'
+  }).use(['jquery', 'mockjs', 'table'], function () {
+    var $ = layui.jquery,
+      layer = layui.layer,
+      dialog = layui.dialog,
+      table = layui.table;
+    var router = layui.router();
+    console.log(router)
+    // 注入mock
+    layui.mockjs.inject({
+      'post /api/user/all': {
+        code: 0,
+        msg: "xxxx",
+        count: 1000,
+        'data|20': [{
+          'id|+1': 1,
+          username: '@name',
+          balance: '10000',
+          power: '50'
+        }]
+      }
+    });
+    table.render({
+      method: 'post',
+      elem: '#test',
+      url: '/api/user/all',
+      toolbar: '#toolbarDemo',
+      title: '用户数据表',
+      even: true,
+      cols: [
+        [{
+          type: 'checkbox',
+          fixed: 'left'
+        }, {
+          field: 'id',
+          title: 'ID',
+          width: 80,
+          fixed: 'left',
+          unresize: true,
+          sort: true
+        }, {
+          field: 'username',
+          title: '昵称',
+        }, {
+          field: 'balance',
+          title: '代币余额',
+        }, {
+          field: 'power',
+          title: '算力',
+        }, {
+          fixed: 'right',
+          title: '操作',
+          toolbar: '#barDemo',
+        }]
+      ],
+      page: true
+    });
+
+    //搜索加载--数据表格重载
+    $('#searchEmailCompany').on('click', function () {
+      // ids = new Array();
+      // var type = $(this).data('type');
+      // active[type] ? active[type].call(this) : '';
+    });
+
+
+
+    //头工具栏事件
+    table.on('toolbar(test)', function (obj) {
+      var checkStatus = table.checkStatus(obj.config.id);
+      switch (obj.event) {
+        case 'getCheckData':
+          var data = checkStatus.data;
+          layer.alert(JSON.stringify(data));
+          break;
+        case 'getCheckLength':
+          var data = checkStatus.data;
+          layer.msg('选中了：' + data.length + ' 个');
+          break;
+        case 'isAll':
+          layer.msg(checkStatus.isAll ? '全选' : '未全选');
+          break;
+      };
+    });
+
+    //监听行工具事件
+    table.on('tool(test)', function (obj) {
+      var data = obj.data;
+      if (obj.event === 'del') {
+        layer.confirm('真的删除行么', function (index) {
+          obj.del();
+          layer.close(index);
+        });
+      } else if (obj.event === 'edit') {
+        // layer.prompt({
+        //   formType: 2,
+        //   value: data.email
+        // }, function (value, index) {
+        //   obj.update({
+        //     email: value
+        //   });
+        //   layer.close(index);
+        // });
+        console.log(obj.data);
+        // var url = "#/user/editUser?data=" + obj.data;
+        // location.href = "/user/editUser?data=" + JSON.stringify(obj.data);
+        // router.hash = '#/user/editUser'
+        // console.log(router)
+      }
+    });
+
+
+
   });
 </script>
 

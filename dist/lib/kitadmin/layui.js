@@ -51,7 +51,7 @@
     layer: 'modules/layer' //弹层
     ,laydate: 'modules/laydate' //日期
     ,laypage: 'modules/laypage' //分页
-    ,laytpl: 'modules/laytpl' //模板引擎
+    ,laytpl: 'modules/laytpl' //系统引擎
     ,layim: 'modules/layim' //web通讯
     ,layedit: 'modules/layedit' //富文本编辑器
     ,form: 'modules/form' //表单集
