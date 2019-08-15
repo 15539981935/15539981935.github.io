@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>衣E 1.0 后台管理系统</title>
+	<!-- build:css -->
+	<link rel="stylesheet" href="lib/kitadmin/css/layui.css">
+	<link rel="stylesheet" href="lib/kitadmin/css/theme/default.css" id="theme">
+	<link rel="stylesheet" href="lib/kitadmin/css/nprogress.css">
+	<!-- endbuild -->
+</head>
+
+<body class="layui-layout-body kit-theme-default">
+	<div class="layui-layout layui-layout-admin">
+		<!-- header -->
+		<div class="layui-header">
+			<div class="layui-logo">
+				<div class="layui-logo-toggle" kit-toggle="side" data-toggle="on">
+					<i class="layui-icon">&#xe65a;</i>
+				</div>
+				<div class="layui-logo-brand">
+					<a href="#/">衣E 1.0</a>
+				</div>
+			</div>
+			<div class="layui-layout-left">
+				<!-- <div class="kit-search">
+          <form action="/">
+            <input type="text" name="keyword" class="kit-search-input" placeholder="关键字..." />
+            <button class="kit-search-btn" title="搜索" type="submit">
+              <i class="layui-icon">&#xe615;</i>
+            </button>
+          </form>
+        </div> -->
+			</div>
+			<div class="layui-layout-right">
+				<ul class="kit-nav" lay-filter="header_right">
+					<!-- <li class="kit-item">
+						<a href="javascript:;">
+							<i class="layui-icon">&#xe607;</i>
+							<span>帮助</span>
+						</a>
+					</li>
+					<li class="kit-item" id="ccleft">
+						<a href="javascript:;">
+							<i class="layui-icon">&#xe60e;</i>
+						</a>
+					</li>
+					<li class="kit-item" id="cc">
+						<a href="javascript:;">
+							<i class="layui-icon">&#xe64c;</i>
+						</a>
+					</li> -->
+					<li class="kit-item">
+						<a href="javascript:;">
+							<span>
+								<img src="http://m.zhengjinfan.cn/images/0.jpg" class="layui-nav-img">管理员
+							</span>
+						</a>
+						<ul class="kit-nav-child kit-nav-right">
+							<li class="kit-item">
+								<a href="#/user/my">
+									<i class="layui-icon">&#xe612;</i>
+									<span>个人中心</span>
+								</a>
+							</li>
+							<li class="kit-item" kit-target="setting">
+								<a href="javascript:;">
+									<i class="layui-icon">&#xe614;</i>
+									<span>设置</span>
+								</a>
+							</li>
+							<li class="kit-nav-line"></li>
+							<li class="kit-item">
+								<a href="views/login.html">
+									<i class="layui-icon">&#x1006;</i>
+									<span>注销</span>
+								</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!-- silds -->
+		<div class="layui-side" kit-side="true">
+			<div class="layui-side-scroll">
+				<div id="menu-box">
+					<ul class="kit-menu">
+						<!-- <li class="kit-menu-item">
+							<a href="#/">
+								<i class="layui-icon"></i>
+								<span>菜单</span>
+							</a>
+						</li> -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>用户管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+                <li class="kit-menu-item">
+                  <a href="#/user/userlist">
+                    <i class="layui-icon"></i>
+                    <span>会员列表</span>
+                  </a>
+                </li>
+                <li class="kit-menu-item">
+                  <a href="#/user/wallet">
+                    <i class="layui-icon"></i>
+                    <span>会员钱包</span>
+                  </a>
+                </li>
+							</ul>
+						</li>
+						<!-- 资产管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>资产管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="#/property/quotation">
+										<i class="layui-icon"></i>
+										<span>行情交易</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="#/property/cpType">
+										<i class="layui-icon"></i>
+										<span>算力类型</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="#/property/cpRecord">
+										<i class="layui-icon"></i>
+										<span>算力记录</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="#/property/recharge">
+										<i class="layui-icon"></i>
+										<span>充值管理</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="#/property/rechargeRecord">
+										<i class="layui-icon"></i>
+										<span>充值记录</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="#/property/cashOut">
+										<i class="layui-icon"></i>
+										<span>提现管理</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 算力管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>算力管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>算力类型管理</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>算力变更记录</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 租衣管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>租衣管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>线下借还</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>线上借还</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>线上换购</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>售后订单</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>用户晒单</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>店铺晒单</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>物流公司编号</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 店铺管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>店铺管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>众筹申请</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>店铺列表</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;">
+										<i class="layui-icon"></i>
+										<span>竞选列表</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 店铺管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>商品管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>商品列表</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>商品类型</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>店铺商品</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 品牌管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>品牌管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>品牌列表</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>品牌分类</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 资金管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>资金管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>币种管理</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>交易管理</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>充值记录</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 社区管理 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>社区管理</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>帖子列表</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 信息交流 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>信息交流</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>公告管理</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>公告类型</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>用户留言</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>短信消息</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<!-- 系统设置 -->
+						<li class="kit-menu-item">
+							<a href="javascript:;" class="child">
+								<i class="layui-icon"></i>
+								<span>系统设置</span>
+							</a>
+							<ul class="kit-menu-child kit-menu-child layui-anim layui-anim-upbit">
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>文字配置</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>图片配置</span>
+									</a>
+								</li>
+								<li class="kit-menu-item">
+									<a href="javascript:;" class="">
+										<i class="layui-icon"></i>
+										<span>网站设置</span>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- main -->
+		<div class="layui-body" kit-body="true">
+			<router-view></router-view>
+		</div>
+		<!-- footer -->
+		<!-- <div class="layui-footer" kit-footer="true">
+			2017 © kit.zhengjinfan.cn MIT license
+		</div> -->
+	</div>
+	<!-- build:js -->
+	<script src="lib/kitadmin/polyfill.min.js"></script>
+	<script src="lib/kitadmin/layui.js"></script>
+	<script src="lib/kitadmin/kitadmin.js"></script>
+	<script src="lib/kitadmin/mockjs-config.js"></script>
+	<!-- endbuild -->
+	<!-- build:use -->
+	<script>
+		layui.config({
+			base: 'js/'
+		}).use('index');
+	</script>
+	<!-- endbuild -->
+</body>
+
+</html>
